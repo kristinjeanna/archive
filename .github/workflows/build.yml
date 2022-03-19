@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        go: [ '1.14', '1.18.0' ]
+        go: [ '1.14', '1.17' ]
 
     steps:
     - name: Checkout project
