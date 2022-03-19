@@ -37,4 +37,4 @@ jobs:
         golint .
 
     - name: Run testing
-      run: cd test && go test -v
+      run: go test -v
