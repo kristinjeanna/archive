@@ -106,4 +106,4 @@ func main() {
 
 ## Credits
 
-- XZ compression support via xi2.org: [xz](https://xi2.org/x/xz)
+- XZ compression support via [github.com/ulikunitz/xz](github.com/ulikunitz/xz)
