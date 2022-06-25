@@ -47,9 +47,11 @@ func (t Type) String() (result string) {
 
 // Format strings for various errors
 const (
-	fmtErrArchiveOpen string = "archive: failed to open archive: %v"
-	fmtErrNewGzReader string = "archive: failed to gz reader: %v"
-	fmtErrNewXzReader string = "archive: failed to xz reader: %v"
+	fmtErrArchiveOpen   string = "archive: failed to open archive: %v"
+	fmtErrNewGzReader   string = "archive: failed to gz reader: %v"
+	fmtErrNewXzReader   string = "archive: failed to xz reader: %v"
+	fmtErrTarReadFailed string = "archive: failed while reading tar contents: %v"
+	fmtErrZipReadFailed string = "archive: failed while reading zip contents: %v"
 )
 
 // errUnknownType is returned by DetermineType if the provided filename
@@ -111,7 +113,7 @@ func WalkZip(archivePath string, callback ZipCallback) error {
 		if callback != nil {
 			err := callback(f)
 			if err != nil {
-				return err
+				return fmt.Errorf(fmtErrZipReadFailed, err)
 			}
 		}
 	}
@@ -187,13 +189,13 @@ func readTar(reader *tar.Reader, callback TarCallback) error {
 		if err == io.EOF {
 			break
 		} else if err != nil {
-			return err
+			return fmt.Errorf(fmtErrTarReadFailed, err)
 		}
 
 		if callback != nil {
 			err := callback(reader, header)
 			if err != nil {
-				return err
+				return fmt.Errorf(fmtErrTarReadFailed, err)
 			}
 		}
 	}
