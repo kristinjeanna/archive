@@ -12,7 +12,7 @@ import (
 	"regexp"
 	"strings"
 
-	"github.com/xi2/xz"
+	"github.com/ulikunitz/xz"
 )
 
 // Type defines the archive types that can be processed
@@ -172,7 +172,7 @@ func WalkTarXz(archivePath string, callback TarCallback) error {
 	}
 	defer file.Close()
 
-	reader, err := xz.NewReader(file, 0)
+	reader, err := xz.NewReader(file)
 	if err != nil {
 		return fmt.Errorf(fmtErrNewXzReader, err)
 	}
