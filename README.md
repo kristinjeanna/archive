@@ -1,8 +1,8 @@
-# archive
+# github.com/kristinjeanna/archive
 
-[![GitHub license](https://img.shields.io/github/license/kristinjeanna/archive.svg?style=flat)](https://github.com/kristinjeanna/archive/blob/main/LICENSE) ![Last commit](https://img.shields.io/github/last-commit/kristinjeanna/archive?style=flat)
+[![GitHub license](https://img.shields.io/github/license/kristinjeanna/archive.svg?style=flat)](https://github.com/kristinjeanna/archive/blob/main/LICENSE) ![Last commit](https://img.shields.io/github/last-commit/kristinjeanna/archive?style=flat) ![Build and test package](https://github.com/kristinjeanna/archive/actions/workflows/build.yml/badge.svg?branch=main) [![Go Reference](https://pkg.go.dev/badge/github.com/kristinjeanna/archive.svg)](https://pkg.go.dev/github.com/kristinjeanna/archive)
 
-Package `archive` is a convenience package for enumerating the contents of zip files, tar files, and compressed tar files. Supported archive types include: zip, tar, gzip-compressed tar, bzip2-compressed tar, and xz-compressed tar.
+Package `archive` is a convenience package for walking/enumerating the contents of zip files, tar files, and compressed tar files through callback functions. Supported archive types include: zip, tar, gzip-compressed tar, bzip2-compressed tar, and xz-compressed tar.
 
 - [Install](#install)
 - [Examples](#examples)
@@ -13,8 +13,7 @@ Package `archive` is a convenience package for enumerating the contents of zip f
 
 ## Install
 
-```bash
-go get xi2.org/x/xz
+```shell
 go get github.com/kristinjeanna/archive
 ```
 
