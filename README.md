@@ -1,6 +1,6 @@
 # github.com/kristinjeanna/archive
 
-[![GitHub license](https://img.shields.io/github/license/kristinjeanna/archive.svg?style=flat)](https://github.com/kristinjeanna/archive/blob/main/LICENSE) ![Last commit](https://img.shields.io/github/last-commit/kristinjeanna/archive?style=flat) ![Build and test](https://github.com/kristinjeanna/archive/actions/workflows/build.yml/badge.svg?branch=main) [![Go Reference](https://pkg.go.dev/badge/github.com/kristinjeanna/archive.svg)](https://pkg.go.dev/github.com/kristinjeanna/archive)
+[![GitHub license](https://img.shields.io/github/license/kristinjeanna/archive.svg?style=flat&label=License)](https://github.com/kristinjeanna/archive/blob/main/LICENSE) ![Last commit](https://img.shields.io/github/last-commit/kristinjeanna/archive?style=flat&label=Last%20commit) ![Build and test](https://github.com/kristinjeanna/archive/actions/workflows/build.yml/badge.svg?branch=main) ![Release)](https://img.shields.io/github/v/release/kristinjeanna/archive?label=Release) [![Go Reference](https://pkg.go.dev/badge/github.com/kristinjeanna/archive.svg)](https://pkg.go.dev/github.com/kristinjeanna/archive)
 
 Package `archive` is a convenience package for walking/enumerating the contents of zip files, tar files, and compressed tar files through callback functions. Supported archive types include: zip, tar, gzip-compressed tar, bzip2-compressed tar, and xz-compressed tar.
 
