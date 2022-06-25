@@ -52,9 +52,9 @@ const (
 	fmtErrNewXzReader string = "archive: failed to xz reader: %v"
 )
 
-// ErrUnknownType is returned by DetermineType if the provided filename
+// errUnknownType is returned by DetermineType if the provided filename
 // fails to match an archive type supported by this package.
-var ErrUnknownType = errors.New("archive: unable to determine type")
+var errUnknownType = errors.New("archive: unable to determine type")
 
 func init() {
 	typeInfoMap = make(map[Type]typeInfo)
@@ -87,7 +87,7 @@ func DetermineType(filename string) (Type, error) {
 		}
 	}
 
-	return 0, ErrUnknownType
+	return 0, errUnknownType
 }
 
 // TarCallback is the type of function called for each file or directory entry
