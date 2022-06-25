@@ -9,6 +9,7 @@ import (
 	"fmt"
 	"io"
 	"os"
+	"path/filepath"
 	"regexp"
 	"strings"
 
@@ -124,11 +125,16 @@ func WalkZip(archivePath string, callback ZipCallback) error {
 // WalkTar walks the contents of a tar file and invokes the callback
 // function for each entry.
 func WalkTar(archivePath string, callback TarCallback) error {
-	file, err := os.Open(archivePath)
+	path := filepath.Clean(archivePath)
+	file, err := os.Open(path)
 	if err != nil {
 		return fmt.Errorf(fmtErrArchiveOpen, err)
 	}
-	defer file.Close()
+	defer func() {
+		if err := file.Close(); err != nil {
+			panic(fmt.Errorf("error closing file: %v", err))
+		}
+	}()
 
 	return readTar(tar.NewReader(file), callback)
 }
@@ -136,11 +142,16 @@ func WalkTar(archivePath string, callback TarCallback) error {
 // WalkTarBzip2 walks the contents of a bzip2-compressed tar file and invokes the
 // callback function for each entry.
 func WalkTarBzip2(archivePath string, callback TarCallback) error {
-	file, err := os.Open(archivePath)
+	path := filepath.Clean(archivePath)
+	file, err := os.Open(path)
 	if err != nil {
 		return fmt.Errorf(fmtErrArchiveOpen, err)
 	}
-	defer file.Close()
+	defer func() {
+		if err := file.Close(); err != nil {
+			panic(fmt.Errorf("error closing file: %v", err))
+		}
+	}()
 
 	reader := bzip2.NewReader(file)
 
@@ -150,11 +161,16 @@ func WalkTarBzip2(archivePath string, callback TarCallback) error {
 // WalkTarGz walks the contents of a gzip-compressed tar file and invokes the
 // callback function for each entry.
 func WalkTarGz(archivePath string, callback TarCallback) error {
-	file, err := os.Open(archivePath)
+	path := filepath.Clean(archivePath)
+	file, err := os.Open(path)
 	if err != nil {
 		return fmt.Errorf(fmtErrArchiveOpen, err)
 	}
-	defer file.Close()
+	defer func() {
+		if err := file.Close(); err != nil {
+			panic(fmt.Errorf("error closing file: %v", err))
+		}
+	}()
 
 	reader, err := gzip.NewReader(file)
 	if err != nil {
@@ -168,11 +184,16 @@ func WalkTarGz(archivePath string, callback TarCallback) error {
 // WalkTarXz walks the contents of a lzma2-compressed (xz) tar file and invokes the
 // callback function for each entry.
 func WalkTarXz(archivePath string, callback TarCallback) error {
-	file, err := os.Open(archivePath)
+	path := filepath.Clean(archivePath)
+	file, err := os.Open(path)
 	if err != nil {
 		return fmt.Errorf(fmtErrArchiveOpen, err)
 	}
-	defer file.Close()
+	defer func() {
+		if err := file.Close(); err != nil {
+			panic(fmt.Errorf("error closing file: %v", err))
+		}
+	}()
 
 	reader, err := xz.NewReader(file)
 	if err != nil {
