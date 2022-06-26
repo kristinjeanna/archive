@@ -26,8 +26,10 @@ jobs:
 
     - name: Install tools and dependencies (${{ matrix.go }})
       run: |
+        go install github.com/golangci/golangci-lint/cmd/golangci-lint@latest
         go install honnef.co/go/tools/cmd/staticcheck@latest
         go install github.com/securego/gosec/v2/cmd/gosec@latest
+        go install github.com/go-critic/go-critic/cmd/gocritic@latest
 
     - name: Run build (${{ matrix.go }})
       run: go build -v -a ./...
@@ -35,10 +37,12 @@ jobs:
     - name: Run tests (${{ matrix.go }})
       run: go test -v ./...
 
-    - name: Run vet & staticcheck (${{ matrix.go }})
+    - name: Run code analysis tools (${{ matrix.go }})
       run: |
         go vet ./...
         staticcheck ./...
+        golangci-lint run
+        gocritic ./...
 
     - name: Run gosec security scanner (${{ matrix.go }})
       run: |
