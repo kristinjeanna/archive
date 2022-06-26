@@ -236,7 +236,7 @@ var typeInfoMap map[Type]typeInfo
 // Constructs a regular expression string from the specified extensions.
 func makeRegex(extensions []string) (regex string) {
 	regex = strings.Join(extensions, "|")
-	regex = strings.Replace(regex, ".", `\.`, -1)
+	regex = strings.ReplaceAll(regex, ".", `\.`)
 	regex = fmt.Sprintf("(%s)$", regex)
 	return
 }
