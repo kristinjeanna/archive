@@ -26,8 +26,8 @@ jobs:
 
     - name: Install tools and dependencies (${{ matrix.go }})
       run: |
-        go version
         go install honnef.co/go/tools/cmd/staticcheck@latest
+        go install github.com/securego/gosec/v2/cmd/gosec@latest
 
     - name: Run build (${{ matrix.go }})
       run: go build -v -a ./...
@@ -39,3 +39,7 @@ jobs:
       run: |
         go vet ./...
         staticcheck ./...
+
+    - name: Run gosec security scanner (${{ matrix.go }})
+      run: |
+        gosec ./...
