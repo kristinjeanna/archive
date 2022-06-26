@@ -123,7 +123,7 @@ func TestWalkTarXz(t *testing.T) {
 	}
 }
 
-func TestWalkzip(t *testing.T) {
+func TestWalkZip(t *testing.T) {
 	callback := func(file *zip.File) error {
 		fmt.Printf("%s\n", file.Name)
 		return nil
