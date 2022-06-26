@@ -35,7 +35,14 @@ jobs:
       run: go build -v -a ./...
 
     - name: Run tests (${{ matrix.go }})
-      run: go test -v ./...
+      run: go test -race -coverprofile=coverage.out -covermode=atomic -v ./...
+
+    - name: Upload code coverage to codecov.io
+      uses: codecov/codecov-action@v3.1.0
+      with:
+        token: ${{ secrets.CODECOV_TOKEN }}
+        files: ./coverage1.out
+        verbose: true
 
     - name: Run code analysis tools (${{ matrix.go }})
       run: |
