@@ -6,6 +6,8 @@ import (
 	"errors"
 	"fmt"
 	"testing"
+
+	"go.uber.org/goleak"
 )
 
 type typeTest struct {
@@ -163,4 +165,8 @@ func TestType_String(t *testing.T) {
 			t.Errorf("Expecting '%s', got '%s'\n", typ.expected, result)
 		}
 	}
+}
+
+func TestMain(m *testing.M) {
+	goleak.VerifyTestMain(m)
 }
